@@ -1,0 +1,153 @@
+<!--Tai-->
+{% load static %}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+
+    </head> 
+
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
+<br><br>
+ <div class="container mt-40">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+  <div class="table-responsive">
+<table class="table table-bordered">
+  <thead>
+    <tr>      
+     <td colspan="9" style="color: #bd5942;"><center>
+      <b>Vagas de Voluntariados</b>
+   </center>
+    </td>
+
+    </tr>
+
+    <tr>
+   <!--   <th scope="col"><a href="#" class="lnk-hide" data-div="1"><span style="color: black;" class="mdi mdi-plus-circle"></span></a></th>-->
+      <th ></th>
+      <th scope="col">Horário</th>
+      <th scope="col">Função</th>
+      <th scope="col">Vagas</th>
+      <th scope="col">Tempo</th>
+      <th scope="col">Idade minima </th>
+      <th scope="col">Telefone </th>
+      <th scope="col">Data</th>
+      <th scope="col">Endereço </th>
+    </tr>
+  </thead>
+   
+    <br />
+  <tbody>
+    {% if users %}
+      
+          {% for user in users %}
+           
+              {% with voluntario=user.voluntario %}
+ 
+    <tr>
+      <th scope="row">
+      {{user.user.username}}</th>
+      <td>{{ user.titulo }}</td>
+      <td>{{user.funcao}}</td>
+      <td>{{user.quantidadepessoas}}</td>
+      <td>{{user.tempo}}</td>
+      <td>{{user.idademinima}}</td>
+       <td>{{user.telefone}}</td>
+      <td>{{user.data}}</td>
+      <td colspan="2">{{user.cidade}}, {{user.bairro}}, {{user.rua}}, {{user.numero}}</td>
+    {% if request.user.is_authenticated %}
+                            {% if perms.accounts.atual %}
+                            <td>
+                                <a href="/voluntariado/{{ user.id }}/favo" class="btn btn-outline-danger">
+                                  <i class="mdi mdi-heart-outline"></i> Voluntariar <span class="badge bg-light">{{ voluntario.favoC }}</span>
+                                </a>
+                              </div></td>
+                            {% endif %}
+                          {% endif %}
+    </tr>   {% endwith %} 
+ 
+   {% empty %}
+     <tr>      
+     <td colspan="9" ><center>
+      A instituição não realizou postagem de vagas para voluntario.
+   </center>
+    </td>
+
+    </tr>
+  
+          {% endfor %}{% endif %}
+
+    </tbody>
+</table></div>
+
+ </div></div></div></body>
+<br>
+</body>
+
+
+
+     <script src="{% static 'plugins/common/common.min.js' %}"></script>
+        <script src="{% static 'js/custom.min.js' %}"></script>
+        <script src="{% static  'js/settings.js' %}"></script>
+        <script src="{% static 'js/gleek.js' %}"></script>
+        <script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+        <!-- Chartjs -->
+        <script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+        <!-- Circle progress -->
+        <script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+        <!-- Datamap -->
+        <script src="{% static '/plugins/d3v3/index.js' %}"></script>
+        <script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+        <script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+        <!-- Morrisjs -->
+        <script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+        <script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+        <!-- Pignose Calender -->
+        <script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+        <script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+        <!-- ChartistJS -->
+        <script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+        <script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+        <script src="{% static '/js/dashboard/menor.js' %}"></script>
+        <script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+</html>
+      
+
+          

@@ -1,0 +1,241 @@
+<!--Tai-->
+{% load static %}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+
+    </head> 
+
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
+<br><br>
+ <div class="container mt-40">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>      
+     <td colspan="9" style="color: #bd5942;"><center>
+      <b>Vagas de Voluntariados</b>
+   </center>
+    </td>
+
+    </tr>
+
+    <tr>
+   <!--   <th scope="col"><a href="#" class="lnk-hide" data-div="1"><span style="color: black;" class="mdi mdi-plus-circle"></span></a></th>-->
+      <th ></th>
+      <th scope="col">Horário</th>
+      <th scope="col">Função</th>
+      <th scope="col">Vagas</th>
+      <th scope="col">Tempo</th>
+      <th scope="col">Idade minima </th>
+      <th scope="col">Telefone </th>
+      <th scope="col">Data</th>
+      <th scope="col">Endereço </th>
+    </tr>
+  </thead>
+   
+    <br />
+  <tbody>
+    {% for voluntariado in voluntario %}
+ 
+    <tr>
+      <th scope="row">
+      {{sender.username}}</th>
+      <td>{{voluntariado.horario}}</td>
+      <td>{{voluntariado.funcao}}</td>
+      <td>{{voluntariado.qnt}}</td>
+      <td>{{voluntariado.tempo}}</td>
+      <td>{{voluntariado.idademin}}</td>
+       <td>{{voluntariado.telefone}}</td>
+      <td>{{voluntariado.data}}</td>
+      <td colspan="2">{{voluntariado.cidade}}, {{voluntariado.bairro}}, {{voluntariado.rua}}, {{voluntariado.numero}}</td>
+
+    </tr>
+   {% empty %}
+     <tr>      
+     <td colspan="9" ><center>
+      A instituição não realizou postagem de vagas para voluntario.
+   </center>
+    </td>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+
+
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>      
+     <td colspan="9" style="color: #bd5942;"><center>
+      <b>Faça uma doação em dinheiro</b>
+   </center>
+    </td>
+
+    </tr>
+
+    <tr>
+   
+      <th ></th>
+
+      <th scope="col">Título</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Outro tipo?</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Finalidade </th>
+     
+      <th scope="col">Data</th>
+      <th scope="col">Endereço </th>
+    </tr>
+  </thead>
+   
+    <br />
+  <tbody>
+   {% for doacao in doacao %}
+    <tr>
+      <th scope="row">
+      {{sender.username}}</th>
+      <td>{{ doacao.titulo }}</td>
+      <td>{{doacao.categoria}}</td>
+      <td>{{doacao.outro}}</td>
+      <td>{{vdoacao.descricao}}</td>
+      <td>{{ doacao.finalidade}}</td>
+      <td>{{doacao.data}}</td>
+      <td colspan="2">{{doacao.cidade}}, {{doacao.bairro}}, {{doacao.rua}}, {{doacao.numero}}</td>
+
+    </tr>
+     {% empty %}
+     <tr>      
+     <td colspan="9"><center>
+      A instituição não realizou postagem de vagas para doação.
+   </center>
+    </td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>      
+     <td colspan="9" style="color: #bd5942;"><center>
+      <b>Faça uma doação em Pix</b>
+   </center>
+    </td>
+
+    </tr>
+
+    <tr>
+   
+      <th ></th>
+
+      <th scope="col">Título</th>
+      <th scope="col">Descricao</th>
+      <th scope="col">Chave Pix</th>
+      <th scope="col">Nome Chave</th>
+      <th scope="col">Data</th>
+     
+    </tr>
+  </thead>
+   
+    <br />
+  <tbody>
+   {% for doacaoPix in doacaoPix %}
+    <tr>
+      <th scope="row">
+      {{sender.username}}</th>
+      <td>{{ doacaoPix.titulo }}</td>
+      <td>{{doacaoPix.descricao}}</td>
+      <td>{{doacaoPix.chavePix}}</td>
+      <td>{{doacaoPix.nomeChave}}</td>
+      <td>{{doacaoPix.data}}</td>
+    </tr>
+    {% empty %}
+     <tr>      
+     <td colspan="9"><center>
+      A instituição não realizou postagem para doação.
+   </center>
+    </td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+ </div></div></div></body>
+<br>
+</body>
+
+
+
+     <script src="{% static 'plugins/common/common.min.js' %}"></script>
+        <script src="{% static 'js/custom.min.js' %}"></script>
+        <script src="{% static  'js/settings.js' %}"></script>
+        <script src="{% static 'js/gleek.js' %}"></script>
+        <script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+        <!-- Chartjs -->
+        <script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+        <!-- Circle progress -->
+        <script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+        <!-- Datamap -->
+        <script src="{% static '/plugins/d3v3/index.js' %}"></script>
+        <script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+        <script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+        <!-- Morrisjs -->
+        <script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+        <script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+        <!-- Pignose Calender -->
+        <script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+        <script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+        <!-- ChartistJS -->
+        <script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+        <script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+        <script src="{% static '/js/dashboard/menor.js' %}"></script>
+        <script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+</html>
+      
+

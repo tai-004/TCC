@@ -1,0 +1,148 @@
+<!--Tai-->
+{% load static %}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+
+    </head> 
+
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
+<br><br>
+
+
+<br><br>
+
+    
+ <div class="container mt-40">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+<div class="card">
+  <div class="card-body">
+     <h3 class="dark-color"> Conheça melhor seu novo voluntario.</h3>
+    <div class="card-body text-justify">
+
+     
+
+     <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-lg-6">
+                        <div class="about-text go-to">
+                           
+                            <h6 class="theme-color lead"></h6>
+                            <p>Olá, eu sou   <mark>{{ curriculo.user.profile.nome }}</mark> e estou me candidatando para o voluntariado, pois {{ curriculo.motivacao }} é a minha motivação. Estou extremamente feliz por você me acolher nessa instituição, prometo me comprometer com a causa e utilizar meu tempo dísponivel de <mark>{{ curriculo.tempo_disponivel }} </mark>para mostrar minhas habilidades de <mark>{{ curriculo.user.profile.habilidades }}</mark>, já que tenho experiencia em<mark>{{ curriculo.experiencia }}</mark>. </p>
+                            <div class="row about-list">
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label><b>Data de nascimento: </b></label>
+                                        <p>{{ curriculo.data_nasc }}</p>
+                                    </div>
+                                    <div class="media">
+                                        <label><b>Sexo: </b></label>
+                                        <p>{{ curriculo.user.profile.sexo }}</p>
+                                    </div>
+                                    <div class="media">
+                                        <label><b>Formação: </b></label>
+                                        <p>{{ curriculo.user.profile.formacao }}</p>
+                                    </div>
+                                   
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label><b>E-mail: </b></label>
+                                        <p>{{ curriculo.email }}</p>
+                                    </div>
+                                    <div class="media">
+                                        <label><b>Resumo: </b></label>
+                                        <p>{{ curriculo.resumo }}</p>
+                                    </div>
+                                     <div class="media">
+                                        <label><b>Telefone: </b></label>
+                                        <p>{{ curriculo.telefone }}</p>
+                                    </div>
+                                </div>
+                            </div>
+<p class="card-text mt-6" style="color: #D95F23; display: flex; justify-content: flex-end;"><b>{{ curriculo.aceitar_count }} voluntários cadastrados.</b></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-avatar">
+                          {% if curriculo.user.profile.banner %}
+                    <img src="{{ curriculo.user.profile.banner.url }}"  width="300" height="300" class="mr-3 rounded-circle">
+                  {% else %}
+                    {% if curriculo.user.instituicao.picture %}
+                      <img src="{{ curriculo.user.instituicao.picture.url }}" width="300" height="300" class="mr-3 rounded-circle">
+                    {% else %}
+                      <img src="{% static 'images/user/dorcas.jpg'%}" alt="Foto de Perfil" width="300" height="300" class="mr-3 rounded-circle">
+                    {% endif %}
+                  {% endif %}
+                        </div>
+                    </div>
+                </div>
+                </div></div></div></div></div></div>
+            </div>
+
+
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static  'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+<!-- Chartjs -->
+<script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+<!-- Circle progress -->
+<script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+<!-- Datamap -->
+<script src="{% static '/plugins/d3v3/index.js' %}"></script>
+<script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+<script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+<!-- Morrisjs -->
+<script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+<!-- Pignose Calender -->
+<script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+<script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+<!-- ChartistJS -->
+<script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+<script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+<script src="{% static '/js/dashboard/menor.js' %}"></script>
+
+<script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+
+</html>

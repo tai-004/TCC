@@ -1,0 +1,208 @@
+<!--Tai-->
+{% load bootstrap %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Dorcas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+    <!-- Pignose Calender -->
+    <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+</head>
+
+<body style="background-color: #fff;">
+
+      {% include 'navBar.html' %} 
+  
+    <section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+     
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+             {% if user.instituicao.picture %}
+                <img class="rounded-circle img-fluid" style="width: 150px;" alt="Foto de Perfil" src="{{ user.instituicao.picture.url }}">
+              {% else %}
+                <img class="rounded-circle img-fluid" style="width: 150px;" alt="Foto de Perfil" src="{% static 'images/imgs/21.jpg'%}">
+              {% endif %}
+              
+            <h5 class="my-3">{{ user.instituicao.nome }}</h5>
+            <p class="text-muted mb-1">@{{ user.instituicao.user }}</p>
+            <p class="text-muted mb-4">{{ user.instituicao.cidade }}, {{ user.instituicao.estado }}</p>
+            <div class="d-flex justify-content-center mb-2">
+                 {% if request.user.is_authenticated %}
+                                    {% if perms.accounts.inst %}
+                                          <a   href="/accounts/instituicao_profile/" type="button" class="btn btn-secondary">Editar Perfil</a>
+                                    {% endif %}
+                                 {% endif %}
+            
+          
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+          
+               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                
+                <p class="mb-0"><b><a href="/accounts/password_reset/done/" style="color:#bd5942;">Redefinir Senha</a></b></p>
+
+              </li>
+               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                
+                <p class="mb-0"><b><a href="/accounts/logout/" style="color:#bd5942;">Sair</a></b></p>
+
+              </li>
+               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                
+                <p class="mb-0"><b><a href="/accounts/antesSair/" style="color:#bd5942;">Excluir Conta</a></b></p>
+
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+             <div class="row">
+              <div class="col-sm-3">
+               
+              </div>
+              <div class="col-sm-9">
+                <p  style="color: #bd5942; font-size: 20px;"><b> Dados da Instituição</b></p>
+              </div>
+            </div><br>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Telefone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.instituicao.telefone }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.instituicao.email }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Eixo de atuação</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.instituicao.eixoAtuacao }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Bio</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.instituicao.bio }}</p>
+              </div>
+            </div>
+            <hr>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nome do responsavel</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.instituicao.nomeResponsavel }}</p>
+              </div></div>
+              <hr>
+                <div class="row">
+              <div class="col-sm-3">
+                 <p class="mb-0">Estado</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.instituicao.estado }}</p>
+              </div>
+            </div>
+            <hr>
+              <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Cidade</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.instituicao.cidade }}</p>
+              </div>
+            </div>
+            <hr>
+              
+             <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Logradouro</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{user.instituicao.bairro}}, {{ user.instituicao.rua }}, {{ user.instituicao.numero }} </p>
+              </div>
+            </div>
+            <hr>
+            </div>
+          </div>
+        </div>
+        
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+     <script src="{% static 'plugins/common/common.min.js' %}"></script>
+        <script src="{% static 'js/custom.min.js' %}"></script>
+        <script src="{% static  'js/settings.js' %}"></script>
+        <script src="{% static 'js/gleek.js' %}"></script>
+        <script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+        <!-- Chartjs -->
+        <script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+        <!-- Circle progress -->
+        <script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+        <!-- Datamap -->
+        <script src="{% static '/plugins/d3v3/index.js' %}"></script>
+        <script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+        <script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+        <!-- Morrisjs -->
+        <script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+        <script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+        <!-- Pignose Calender -->
+        <script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+        <script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+        <!-- ChartistJS -->
+        <script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+        <script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+        <script src="{% static '/js/dashboard/menor.js' %}"></script>
+        <script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+    </body>
+</html>
+
+

@@ -1,0 +1,179 @@
+<!--Tai-->
+{% load static %}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+
+    </head> 
+
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
+<br><br>
+   <style>
+        /* Estilo para o alerta */
+        .alert {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: auto;
+            background-color: #F2AD9D;
+            color: black;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+   
+<br><br>
+     <div class="container mt-40">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+           
+<table class="table table-bordered">
+  <thead>
+   <tr>      
+     <td colspan="8" style="color: #bd5942;"><center>
+      <b>Doação</b>
+   </center>
+    </td>
+
+    </tr>
+
+    <tr>
+        <th scope="col"></th>
+    
+      <th scope="col">Titulo</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Outro tipo</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Finalidade</th>
+        
+      <th scope="col">data</th>
+
+       </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <th scope="row">{{ doacao.user.username }}</th>
+      <td>{{doacao.titulo}}</td>
+      <td>{{doacao.categoria}}</td>
+       <td>{{doacao.outro}}</td>
+        <td>{{doacao.descricao}}</td>
+        <td>{{doacao.finalidade}}</td>
+      <td>{{doacao.data}}</td>
+    </tr>
+  
+     <tr>
+    
+       <th colspan="2">Endereço</th>
+
+
+        <td colspan="7">{{doacao.estado}}, {{doacao.cidade}}, {{doacao.bairro}}, {{doacao.rua}}, {{doacao.numero}}</td>
+ </tr>
+    </tbody>
+
+</table> 
+    <div class="container mt-40">
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+
+<div class="left-align-container">
+    
+<span class="mdi mdi-heart" style="color: #705049;"></span>
+   
+ <b style="color: #705049;"> <p class="card-text mt-3">{{ doacao.cont }} Doações arrecadadas.</p>
+                        
+
+  
+</div>
+
+<style>
+    .left-align-container {
+        text-align: right;
+    }
+
+    /* Adicione outros estilos CSS conforme necessário */
+</style>
+</div></div></div>
+
+{% if request.user.is_authenticated %}
+{% if perms.accounts.atual %}
+
+<script>
+        window.onload = function() {
+            // Cria um elemento div para o alerta
+            var alerta = document.createElement('div');
+            alerta.className = 'alert';
+            alerta.innerHTML = 'Parabéns, você realizou uma doação. Vá para "minhas doações" e confirme sua entrega.';
+
+            // Adiciona o alerta ao corpo da página
+            document.body.appendChild(alerta);
+        };
+    </script>
+
+{% endif %}
+{% endif %}
+
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static  'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+<!-- Chartjs -->
+<script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+<!-- Circle progress -->
+<script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+<!-- Datamap -->
+<script src="{% static '/plugins/d3v3/index.js' %}"></script>
+<script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+<script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+<!-- Morrisjs -->
+<script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+<!-- Pignose Calender -->
+<script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+<script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+<!-- ChartistJS -->
+<script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+<script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+<script src="{% static '/js/dashboard/menor.js' %}"></script>
+
+<script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+
+</html>

@@ -1,0 +1,132 @@
+<!--Tai-->
+{% load static %}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+
+    </head> 
+
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
+
+ <div class="container py-5">
+    <div class="row">
+     
+    </div>
+
+    <div class="row">
+
+  <div class="container">
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-12">
+  
+            <form method="get" action="{% url 'search_users' %}">
+              <div class="form-row align-items-center mb-3">
+                <div class="col">
+                  {{ form|bootstrap }}
+                </div>
+            
+                    
+                 <button type="submit" style="background-color: #705049; border: 0%; border-color: #705049; color: white; font-size: 15px; padding: 10px 10px;">Pesquisar</button>
+          
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+  {% for instituicao in instituicao %}
+    {% if forloop.counter0|divisibleby:4 %}
+      <div class="row">
+    {% endif %}
+    {% if instituicao.nome %}
+<div class="col-lg-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="text-center">
+  
+   
+        {% if instituicao.picture %}
+ <img class="rounded-circle"  style="width: 60px; height: 60px;" src="{{ instituicao.picture.url }}" alt="Card image cap">
+        {% else %}
+          <img class="rounded-circle" style="width: 60px; height: 60px;" src="{% static 'images/user/dorcas.jpg' %}" alt="">
+        {% endif %}
+  
+                                 
+                                    <h5 class="mt-3 mb-1"><a href="/{{instituicao.user.username}}"  style="color: #bd5942">{{ instituicao.nome }}</a></h5>
+                                    <p class="m-0">@{{ instituicao.user.username }}</p>
+                                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
+                                </div>
+                            </div></div></div>
+                        {% endif %}
+
+    {% if forloop.counter|divisibleby:4 or forloop.last %}
+      </div>
+    {% endif %}
+  {% endfor %}
+                    </div></div>
+
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static  'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+<!-- Chartjs -->
+<script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+<!-- Circle progress -->
+<script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+<!-- Datamap -->
+<script src="{% static '/plugins/d3v3/index.js' %}"></script>
+<script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+<script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+<!-- Morrisjs -->
+<script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+<!-- Pignose Calender -->
+<script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+<script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+<!-- ChartistJS -->
+<script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+<script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+<script src="{% static '/js/dashboard/menor.js' %}"></script>
+
+<script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+
+</html>

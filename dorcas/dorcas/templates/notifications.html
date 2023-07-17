@@ -1,0 +1,258 @@
+<!--Tai-->
+{% load static %}
+{%load bootstrap%}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+
+    </head> 
+
+    <body style="background-color: #fff;">
+
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+        <!--*******************
+            Preloader end
+        ********************-->
+
+      {% include 'navBar.html' %} 
+<br><br>
+
+
+
+
+{% if request.user.is_authenticated %}
+                    {% if perms.accounts.inst %}
+<div class="container mt-40">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td colspan="11" style="color: #bd5942;">
+                                <center><b>Notificações</b></center>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                          
+                        </tr>
+                    </thead>
+
+                    <br />
+                    <tbody>
+            {% for notification in notifications %}
+            {% if notification.noti == 1 %}
+                                    <tr>
+                            <th scope="row">
+                          {% if perms.accounts.foto %}
+                      {% if notification.sender.instituicao.banner %}
+                      <img src="{{ notification.sender.instituicao.banner.url }}" width="50" height="50" class="mr-3 rounded-circle">
+                      {% endif %}
+                      {% if notification.sender.profile.banner %}
+                      <img src="{{ notification.sender.profile.banner.url }}" width="50" height="50" class="mr-3 rounded-circle">
+                      {% endif %}
+                      {% else %}
+                      <img src="{% static 'images/imgs/21.jpg'%}" class="mr-3 rounded-circle">
+                      {% endif %}
+                      <a href="{{ notification.id }}/noti" style="color:#705049; text-decoration: none;" class="mt-0">@{{ notification.sender.username }}</a>
+                            </th>
+                        
+                           
+                            
+                            <td colspan="3"><p style="font-style: italic;">"Interessado na vaga de voluntário:
+                      <a href="/voluntariado/{{ notification.voluntario.id }}" class="text-danger">{{ notification.voluntario.titulo }}</a>"</p></td>
+                             <td>{{notification.data}}</td>
+                             <td><a href="{{ notification.id }}/noti" style="color:#705049;"><b>Ver curriculo do voluntário</b></a> </td>
+                        </tr>
+                         
+                        {% elif notification.noti == 2 %}
+                           <th scope="row">
+                           {% if perms.accounts.foto %}
+                  {% if notification.sender.instituicao.banner %}
+                  <img src="{{ notification.sender.instituicao.banner.url }}" width="50" height="50" class="mr-3 rounded-circle">
+                  {% endif %}
+                  {% if notification.sender.profile.banner %}
+                  <img src="{{ notification.sender.profile.banner.url }}" width="50" height="50" class="mr-3 rounded-circle">
+                  {% endif %}
+                  {% else %}
+                  <img src="{% static 'images/imgs/1.jpg' %}" class="mr-3 rounded-circle">
+                  {% endif %}
+                  <h6 style="color:#705049;">{{ notification.sender.first_name }} {{ notification.sender.last_name }}</h6></th>
+                           <td colspan="3"><p style="font-style: italic;">"Interessados em voluntariado da vaga:
+                      <a href="/voluntariado/{{ notification.voluntario.id }}" class="text-danger">{{ notification.voluntario.titulo }}</a>"</p></td>
+                           <td>{{notification.data}}</td>
+                           <td><a href="{{ notification.id }}/noti" style="color:#705049;"><b>Ver curriculo do voluntário</b></a> </td>
+
+                  {% else %}
+                  <th> {% if notification.sender.profile.picture %}
+                  <img src="{{ notification.sender.profile.picture.url }}" class="mr-3 rounded-circle">
+                  {% else %}
+                  <img src="{% static 'images/user/dorcas.jpg'%}" class="mr-3 rounded-circle">
+                  {% endif %}</th>
+                  <td><h5 class="mt-0 text-danger">{{ notification.sender.first_name }} {{ notification.sender.last_name }}</h5>
+                    <p><b>@{{ notification.sender.username }}</b></p></td>
+                        {% endif %}
+                        {% empty %}
+                        <tr>
+                            <td colspan="9" style="color: black;">
+                                <center>Você não possui novas notificações.</center>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endif %}
+
+{% if request.user.is_authenticated %}
+                    {% if perms.accounts.atual %}
+
+<!--Notificação para user simples-->
+<div class="container mt-40">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td colspan="11" style="color: #bd5942;">
+                                <center><b>Notificações</b></center>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+
+                            
+                        </tr>
+                    </thead>
+
+                    <br />
+                    <tbody>
+            {% for notiTabe in notiTabe %}
+            {% if notiTabe.tabe == 2 %}
+                                    <tr>
+                            <th scope="row">
+                           {% if perms.accounts.foto %}
+                {% if notiTabe.sender.instituicao.picture %}
+                <img src="{{ notiTabe.sender.instituicao.picture.url }}" width="50" height="50" class="mr-3 rounded-circle">
+                {% endif %}
+                {% if notiTabe.sender.profile.banner %}
+                <img src="{{ notiTabe.sender.profile.banner.url }}" width="50" height="50" class="mr-3 rounded-circle">
+                {% endif %}
+                {% else %}
+                <img src="{% static 'images/imgs/21.jpg'%}" class="mr-3 rounded-circle">
+                {% endif %}
+                    
+                     <a href="/{{ notiTabe.sender.username }}" style="color:#705049;">@{{ notiTabe.sender.username }}</a>
+                        
+                           
+                            
+                            <td colspan="3"><p style="font-style: italic;"> <p style="font-style: italic;">"Aceitou você para a vaga de:<b style="color: #705049;">
+                    {{ notiTabe.cargo }}</b>"</p>
+                     </td>
+                             <td>{{notiTabe.data}}</td>
+                             <td> <p style="font-style: italic;">"Procure o responsável:
+                              <b style="color: #705049;">
+                    {{ notiTabe.sender.email }}</b>"</p></td>
+                        </tr>
+                      {% endif %}
+                        {% empty %}
+                         {% if perms.accounts.atual %}
+                        <tr>
+                            <td colspan="9" style="color: black;">
+                                <center>Você não possui novas notificações.</center>
+                            </td>
+                        </tr>
+{% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+
+
+
+
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static  'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+<!-- Chartjs -->
+<script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+<!-- Circle progress -->
+<script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+<!-- Datamap -->
+<script src="{% static '/plugins/d3v3/index.js' %}"></script>
+<script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+<script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+<!-- Morrisjs -->
+<script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+<!-- Pignose Calender -->
+<script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+<script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+<!-- ChartistJS -->
+<script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+<script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+<script src="{% static '/js/dashboard/menor.js' %}"></script>
+
+<script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+
+</html> 

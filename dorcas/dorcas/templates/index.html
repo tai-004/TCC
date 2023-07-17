@@ -1,0 +1,149 @@
+<!--Tai-->
+{% load static %}
+{%load bootstrap%}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Dorcas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+    <!-- Pignose Calender -->
+    <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+</head>
+
+<body style="background-color: #fff;">
+    
+  {% include 'navBar.html' %} 
+    <div class="parallax-container">
+        <div class="parallax" style="background-image: url('/static/images/instituicoes-doacao.jpg')"></div>
+        <!-- Camada escura -->
+        <div class="parallax-overlay"></div>
+        <!-- Texto dentro do parallax -->
+        <div class="parallax-text">Sistema Dorcas - Facilitando suas doações</div>
+      </div>
+    <div class="container-fluid">
+        <!--*******************
+            Preloader start
+        ********************-->
+        <div id="preloader">
+            <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+                </svg>
+            </div>
+        </div>
+ 
+  <section class="container py-5">
+            <div class="row">
+              <div class="col-md-12">  <h2 class="mb-4" style="color: #bd5942;">Instituições de Caridade</h2></div>
+              <div class="col-md-8">     <p style="font-size: 17px;">As instituições de caridade são organizações sem fins lucrativos que          
+                  têm como objetivo ajudar pessoas que necessitam de assistência. Essas organizações realizam diversos tipos de ações, como doações de alimentos, roupas, medicamentos, entre outros.
+                    Existem muitas instituições de caridade no mundo, cada uma com sua missão específica e público-alvo. <br><br>Algumas ajudam crianças em situação de risco, outras ajudam pessoas com doenças crônicas, e outras ainda ajudam animais abandonados.
+                  Se você quer ajudar uma instituição de caridade, pode fazer uma doação em dinheiro, doar alimentos, roupas ou outros itens, ou até mesmo se voluntariar para trabalhar na organização.</p>
+                </div>
+                <div class="col-md-4">
+                      <img src="{% static 'images/imgs/img1.jpg'%}" alt="Foto de Perfil" class="img-fluid"> 
+                </div>
+            </div>
+     
+            </section>
+            <br>
+            <br>
+              <section class="container py-5">
+            <div class="row">
+              <div class="col-md-12">  <h2 class="mb-4" style="color: #bd5942;">Importância das Instituições de Caridade</h2></div>
+              <div class="col-md-8">     <p style="font-size: 17px;">As instituições de caridade desempenham um papel crucial em ajudar os mais necessitados e causas importantes. Elas são organizações sem fins lucrativos dedicadas a melhorar a vida das pessoas e comunidades em diferentes aspectos. Essas instituições oferecem assistência e apoio a diversas causas, como crianças em situação de risco, pessoas com doenças graves, idosos, desabrigados, animais abandonados, entre outros grupos vulneráveis.  <br><br>Além de fornecer ajuda direta, as instituições de caridade também desempenham um papel importante na conscientização e na defesa de mudanças sociais. Elas trabalham para criar um impacto positivo duradouro e promover a igualdade, a justiça e a compaixão em nossa sociedade.</p>
+                </div>
+                <div class="col-md-4">
+                       <img src="{% static 'images/imgs/img2.jpg'%}" alt="Foto de Perfil" class="img-fluid"> 
+                </div>
+            </div>
+     
+            </section>
+    </div>
+   
+    </div>
+    <style>
+        .parallax-container {
+          position: relative;
+          height: 400px; /* Ajuste a altura conforme necessário */
+          overflow: hidden;
+        }
+
+        .parallax {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+          background-position: center;
+          opacity: 0.9; /* Ajuste a opacidade conforme necessário */
+          z-index: -1;
+        }
+
+        .parallax-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.3); /* Ajuste a cor e a transparência conforme necessário */
+        }
+
+        .parallax-text {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 35px; /* Ajuste o tamanho da fonte conforme necessário */
+          color: #fff; /* Ajuste a cor do texto conforme necessário */
+          font-weight: bold;
+          text-align: center;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adicione sombra ao texto para melhor legibilidade */
+        }
+
+    </style>
+
+</body>
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static  'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+<!-- Chartjs -->
+<script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+<!-- Circle progress -->
+<script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+<!-- Datamap -->
+<script src="{% static '/plugins/d3v3/index.js' %}"></script>
+<script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+<script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+<!-- Morrisjs -->
+<script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+<script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+<!-- Pignose Calender -->
+<script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+<script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+<!-- ChartistJS -->
+<script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+<script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+<script src="{% static '/js/dashboard/menor.js' %}"></script>
+
+<script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+</html>

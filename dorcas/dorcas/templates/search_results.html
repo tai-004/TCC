@@ -1,0 +1,109 @@
+<!-- mexi nesse-->
+{%load bootstrap%}
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title>Sistema Dorcas</title>
+        <!-- Favicon icon -->
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/img2.png' %}">
+        <!-- Pignose Calender -->
+        <link href="{% static '/plugins/pg-calendar/css/pignose.calendar.min.css' %}" rel="stylesheet">
+        <!-- Chartist -->
+        <link rel="stylesheet" href="{% static '/plugins/chartist/css/chartist.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css' %}">
+        <!-- Custom Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body id="">
+       {% include 'navBar.html' %} 
+      <br> <br> <br> 
+
+       {% if users %}
+
+ <div class="container mt-40">
+
+        <div class="row justify-content-center">
+          <div class="col-md-12">
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">@</th>
+      <th scope="col">Bio</th>
+      <th scope="col">Visitar Perfil</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for user in users %}
+    <tr>
+      {% with instituicao=user.instituicao %}
+      <th scope="row">  {% if user.picture %}
+                          <img src="{{user.picture.url}}" alt="Foto de Perfil" class="mr-2 mb-2 rounded-circle" width="30" height="30">
+                        {% else %}
+                          <img src="{% static 'images/user/dorcas.jpg' %}" alt="Foto de Perfil" class="mr-2 mb-2 rounded-circle" width="30" height="30">
+                        {% endif %}
+      </th>
+      <td>@{{user.user.username}}</td>
+      <td>{{user.bio}}</td>
+      <td> <a href="/{{user.user.username}}" style="color:#bd5942"><b>{{user.user.last_name}} {{user.user.first_name}}</b></a></td>
+    </tr>{% endwith %}
+    {% endfor %}        
+
+    {% else %}
+        <p class="alert alert-info">Nenhum usuário encontrado.</p>
+               
+    </tbody>
+</table>
+</div></div></div> {% endif %}
+
+         <script src="{% static 'plugins/common/common.min.js' %}"></script>
+        <script src="{% static 'js/custom.min.js' %}"></script>
+        <script src="{% static  'js/settings.js' %}"></script>
+        <script src="{% static 'js/gleek.js' %}"></script>
+        <script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+        <!-- Chartjs -->
+        <script src="{% static '/plugins/chart.js/Chart.bundle.min.js' %}"></script>
+        <!-- Circle progress -->
+        <script src="{% static '/plugins/circle-progress/circle-progress.min.js' %}"></script>
+        <!-- Datamap -->
+        <script src="{% static '/plugins/d3v3/index.js' %}"></script>
+        <script src="{% static '/plugins/topojson/topojson.min.js' %}"></script>
+        <script src="{% static '/plugins/datamaps/datamaps.world.min.js' %}"></script>
+        <!-- Morrisjs -->
+        <script src="{% static '/plugins/raphael/raphael.min.js' %}"></script>
+        <script src="{% static '/plugins/morris/morris.min.js' %}"></script>
+        <!-- Pignose Calender -->
+        <script src="{% static '/plugins/moment/moment.min.js' %}"></script>
+        <script src="{% static '/plugins/pg-calendar/js/pignose.calendar.min.js' %}"></script>
+        <!-- ChartistJS -->
+        <script src="{% static '/plugins/chartist/js/chartist.min.js' %}"></script>
+        <script src="{% static '/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js' %}"></script>
+
+        <script src="{% static '/js/dashboard/menor.js' %}"></script>
+        <script src="{% static '/js/dashboard/dashboard-1.js' %}"></script>
+    </body>
+
+</html>
+
+
+
+<!--{% if resultados %}
+    <h2>Resultados da pesquisa:</h2>
+    <ul>
+    {% for resultado in resultados %}
+        <li>{{ resultado }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nenhum resultado encontrado.</p>
+{% endif %}-->
